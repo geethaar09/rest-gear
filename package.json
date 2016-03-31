@@ -1,6 +1,6 @@
 {
   "name": "rest-gear",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A rest server utility to aid app development",
   "main": "gear.js",
   "dependencies": {

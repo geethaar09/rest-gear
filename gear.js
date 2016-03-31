@@ -7,15 +7,6 @@ var restGear;
 var config = require('./conf/config');
 var bodyParser = require('body-parser');
 
-var user = {
-   "user4" : {
-      "name" : "mohit",
-      "password" : "password4",
-      "profession" : "teacher",
-      "id": 4
-   }
-}
-
 function restGearRestart(){
   restGearStop();
   init(config);
@@ -39,8 +30,7 @@ function restGearStop() {
 function restGearAddGet(app, restConf) {
   var URI = '/' + app + restConf.URI; 
   gearApp.get(URI, function (req, res) {
-     fs.readFile( __dirname + "/apps/" + app + "/" + restConf.response_json, 'utf8', function (err, data) {
-         // console.log( data );
+     fs.readFile( __dirname + "/apps/" + app + "/" + restConf.response_json, 'utf8', function (err, data) {         
          res.end( data );
      });
   })  
