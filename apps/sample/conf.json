@@ -1,0 +1,32 @@
+{
+ port: 8081,
+ apps: {
+	sample : [{
+		URI: '/test',
+		type: 'GET',
+		responseFormat: 'json',
+		response: {
+			firstName: 'First-Name',
+			lastName: 'Last-Name'
+		}
+	}],
+	users: [{
+		URI: '/listUsers',
+		type: 'GET',
+		responseFormat: 'file',
+		response: '../data/users.json'
+	},
+	{
+		URI: '/addUser',
+		type: 'POST',	
+		data: {
+			firstName: 'John',
+			lastName: 'Doe',
+			userID: 'jdoe',
+			id: '123'
+		},
+		response: 'User Added'
+	}],
+		cities:[{}]
+ }
+}
