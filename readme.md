@@ -1,11 +1,7 @@
 
-INSTALL:
+#REST-GEAR
 
-npm install rest-gear
-
-npm page: https://www.npmjs.com/package/rest-gear
-
-DESCRIPTION:
+##DESCRIPTION:
 
 A simple rest server utility with UI based management that serves resources that are provided in the config. Allows adding multiple URIs to make rest calls to.
 
@@ -13,12 +9,25 @@ Current version supports only GET requests. Future release may include PUT, POST
 
 Runs as a separate process thus not needing to include other libraries such as mockjax within the dev code. Simply use the resulting URI in your AJAX calls as though it was a real backend call.
 
-EXAMPLE:
-<COMING SOON!>
 
-LICENSE:
 
-MIT License
+##INSTALL:
+
+####npm install rest-gear
+
+npm page: https://www.npmjs.com/package/rest-gear
+
+
+
+##EXAMPLE:
+
+COMING SOON!
+
+
+
+##LICENSE:
+
+###MIT License
 
 Copyright (c) 2016 Geetha Arvind
 
