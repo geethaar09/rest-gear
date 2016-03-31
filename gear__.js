@@ -71,8 +71,14 @@ gearApp.use(bodyParser.urlencoded({ extended: true })); // support encoded bodie
     restGearRestart();
   });
 
-    gearApp.get('/restGear-stop', function (req, res) {
+  gearApp.get('/restGear-stop', function (req, res) {
     restGearStop();
+  });
+
+  gearApp.get('/restGear/management', function(req,res){
+     fs.readFile( __dirname + "/ui/index.html", 'utf8', function (err, data) {         
+         res.end( data );
+     });    
   });
 
   gearApp.post('/config/addAppConf', function(req, res) {

@@ -1,8 +1,8 @@
 {
   "name": "rest-gear",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A rest server utility to aid app development",
-  "main": "gear.js",
+  "main": "gear_provider/gear.js",
   "dependencies": {
     "express": "^4.13.4",
     "body-parser": "^1.15.0"
