@@ -1,0 +1,31 @@
+{
+  "name": "rest-gear",
+  "version": "1.0.0",
+  "description": "A rest server utility to aid app development",
+  "main": "gear.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "body-parser": "^1.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geethaar09/rest-gear.git"
+  },
+  "keywords": [
+    "rest",
+    "ajax",
+    "mockjax",
+    "express",
+    "node"
+  ],
+  "author": "Geetha-Arvind",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geethaar09/rest-gear/issues"
+  },
+  "homepage": "https://github.com/geethaar09/rest-gear#readme"
+}

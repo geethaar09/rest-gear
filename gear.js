@@ -46,9 +46,9 @@ function restGearAddGet(app, restConf) {
   })  
 }
 
-function init(conf) {
-  var apps = conf.apps,
-      appConf, appRestConf;
+exports.init = function (conf) {
+  var apps = config.apps,
+      appConf, appRestConf, gearPort = conf && conf.port || config.port;
 
   for ( var app in apps) {
     appConf = apps[app];
@@ -114,23 +114,9 @@ gearApp.use(bodyParser.urlencoded({ extended: true })); // support encoded bodie
   gearApp.get('/getConf', function(req, res) {
     res.end(JSON.stringify(config));
   });
-  // gearApp.get('/addUser', function (req, res) {
-  //    // First read existing users.
-  //    fs.readFile( __dirname + "/sample/data/" + "sample_data.json", 'utf8', function (err, data) {
-  //        data = JSON.parse( data );
-  //        data["user4"] = user["user4"];
-  //        console.log("READ THIS: " +  data );
-  //        res.end( JSON.stringify(data));
-  //    });
-  // })
-
 
   // Start services
-  restGearStart(conf.port);
+  restGearStart(gearPort);
 }
-
-
-init(config);
-
 
 })();
