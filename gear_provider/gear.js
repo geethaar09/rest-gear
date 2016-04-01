@@ -36,18 +36,25 @@ function restGearAddGet(app, restConf) {
   })  
 }
 
-exports.init = function (conf) {
+function createUISymLink() {
+  fs.linkSync(dstpath, srcpath);
+}
+
+init = function (conf) {
+// exports.init = function (conf) {
   var apps = config.apps,
-      appConf, appRestConf, gearPort = conf && conf.port || config.port;
+      appSpec, appRestConf, gearPort = conf && conf.port || config.port;
 
   gearApp.use(bodyParser.json()); // support json encoded bodies
   gearApp.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-  gearApp.use('/ui', express.static(__dirname + '/ui'));      
+  gearApp.use('/ui', express.static(__dirname + '/ui'));
 
-  for ( var app in apps) {
-    appConf = apps[app];
-    for(var i = 0, len = appConf.length; i < len; i++) {
-      appRestConf = appConf[i];      
+  for (var i = 0, len = apps.length; i < len; i++) {
+    appSpec = apps[i];
+    var app = appSpec.appName;
+    for (var j = 0, confLen = appSpec.appConf.length; j < confLen; j++) {
+      appRestConf = appSpec.appConf[j];
+
       switch(appRestConf.type) { //TODO: Convert to functional programming
         case "GET":
           restGearAddGet(app, appRestConf);
@@ -60,10 +67,30 @@ exports.init = function (conf) {
         case "DELETE":
           // restGearAddDelete(app, appRestConf);
           break;  
-      }
-
+      }    
     }
   }
+
+  // for ( var app in apps) {
+  //   appConf = apps[app];
+  //   for(var i = 0, len = appConf.length; i < len; i++) {
+  //     appRestConf = appConf[i];      
+  //     switch(appRestConf.type) { //TODO: Convert to functional programming
+  //       case "GET":
+  //         restGearAddGet(app, appRestConf);
+  //         break;
+
+  //       case "POST":
+  //         // restGearAddPost(app, appRestConf);
+  //         break;
+
+  //       case "DELETE":
+  //         // restGearAddDelete(app, appRestConf);
+  //         break;  
+  //     }
+
+  //   }
+  // }
 
   gearApp.get('/restGear-restart', function (req, res) {
     restGearRestart();
@@ -112,5 +139,7 @@ exports.init = function (conf) {
   // Start services
   restGearStart(gearPort);
 }
+
+init(config);
 
 })();

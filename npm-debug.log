@@ -1,0 +1,86 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'unpublish', '1.0.2', '--force' ]
+2 info using npm@2.11.3
+3 info using node@v0.12.7
+4 warn using --force I sure hope you know what you are doing.
+5 silly unpublish args[0] 1.0.2
+6 silly unpublish thing { raw: '1.0.2',
+6 silly unpublish   scope: null,
+6 silly unpublish   name: '1.0.2',
+6 silly unpublish   rawSpec: '',
+6 silly unpublish   spec: '*',
+6 silly unpublish   type: 'range' }
+7 verbose getPublishConfig null
+8 silly ls normalized 1.0.2
+9 silly gentlyRm /Users/ak/.npm/1.0.2 is being purged
+10 verbose gentlyRm don't care about contents; nuking /Users/ak/.npm/1.0.2
+11 silly mapToRegistry name 1.0.2
+12 silly mapToRegistry using default registry
+13 silly mapToRegistry registry https://registry.npmjs.org/
+14 silly mapToRegistry uri https://registry.npmjs.org/1.0.2
+15 verbose get GET as part of write; not caching result
+16 verbose request uri https://registry.npmjs.org/1.0.2?write=true
+17 verbose request no auth needed
+18 info attempt registry request try #1 at 8:40:24 AM
+19 verbose request using bearer token for auth
+20 verbose request id 0f9d49387d391c7d
+21 http request GET https://registry.npmjs.org/1.0.2?write=true
+22 http 200 https://registry.npmjs.org/1.0.2?write=true
+23 silly get cb [ 200,
+23 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly get     etag: '"6KHJH0FTN0CSLW4F8W7BW47SR"',
+23 silly get     'content-type': 'application/json',
+23 silly get     'cache-control': 'max-age=0',
+23 silly get     'content-length': '1018',
+23 silly get     'accept-ranges': 'bytes',
+23 silly get     date: 'Thu, 31 Mar 2016 15:40:25 GMT',
+23 silly get     via: '1.1 varnish',
+23 silly get     connection: 'keep-alive',
+23 silly get     'x-served-by': 'cache-sjc3129-SJC',
+23 silly get     'x-cache': 'MISS',
+23 silly get     'x-cache-hits': '0',
+23 silly get     'x-timer': 'S1459438825.094105,VS0,VE163',
+23 silly get     vary: 'Accept' } ]
+24 verbose get saving 1.0.2 to /Users/ak/.npm/registry.npmjs.org/1.0.2_3Fwrite_3Dtrue/.cache.json
+25 info unpublish No version specified, removing all
+26 verbose request uri https://registry.npmjs.org/1.0.2/-rev/4-42835778ea3be724246473748eb1a392
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 8:40:25 AM
+29 verbose request using bearer token for auth
+30 http request DELETE https://registry.npmjs.org/1.0.2/-rev/4-42835778ea3be724246473748eb1a392
+31 http 403 https://registry.npmjs.org/1.0.2/-rev/4-42835778ea3be724246473748eb1a392
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=300',
+32 verbose headers   'content-length': '97',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Thu, 31 Mar 2016 15:40:25 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-sjc3128-SJC',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1459438825.361100,VS0,VE200' }
+33 verbose request invalidating /Users/ak/.npm/registry.npmjs.org/1.0.2 on DELETE
+34 verbose stack Error: You do not have permission to publish '1.0.2'. Are you logged in as the correct user? : 1.0.2
+34 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
+34 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+34 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:354:22)
+34 verbose stack     at Request.emit (events.js:110:17)
+34 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1207:14)
+34 verbose stack     at Request.emit (events.js:129:20)
+34 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1153:12)
+34 verbose stack     at IncomingMessage.emit (events.js:129:20)
+34 verbose stack     at _stream_readable.js:908:16
+34 verbose stack     at process._tickCallback (node.js:355:11)
+35 verbose statusCode 403
+36 verbose pkgid 1.0.2
+37 verbose cwd /GA/github/rest-gear
+38 error Darwin 15.3.0
+39 error argv "node" "/usr/local/bin/npm" "unpublish" "1.0.2" "--force"
+40 error node v0.12.7
+41 error npm  v2.11.3
+42 error code E403
+43 error You do not have permission to publish '1.0.2'. Are you logged in as the correct user? : 1.0.2
+44 error If you need help, you may report this error at:
+44 error     <https://github.com/npm/npm/issues>
+45 verbose exit [ 1, true ]
