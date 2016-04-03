@@ -2,24 +2,27 @@
 	"port": 8081,
 	"apps": [{
 		"appName": "sample",
-		"appConf": {
+		"appConf": [{
 			"URI": "/test",
 			"type": "GET",
 			"response_json": "sample_data.json"
-		}
+		}]
 	}, {
 		"appName": "users",
-		"appConf": {
+		"appConf": [{
 			"URI": "/listAllUsers",
 			"type": "GET",
 			"response_json": "users.json"
-		}
-	}, {
-		"appName": "users",
-		"appConf": {
+		}, {
 			"URI": "/addUser",
 			"type": "POST",
+			"data": {
+				"firstName": "John",
+				"lastName": "Doe",
+				"userID": "jdoe",
+				"id": "123"
+			},
 			"response": "User Added"
-		}
+		}]
 	}]
 }

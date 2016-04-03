@@ -46,8 +46,9 @@ init = function (conf) {
       appSpec, appRestConf, gearPort = conf && conf.port || config.port;
 
   gearApp.use(bodyParser.json()); // support json encoded bodies
-  gearApp.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-  gearApp.use('/ui', express.static(__dirname + '/ui'));
+  gearApp.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies 
+  gearApp.use('/ui', express.static(__dirname + '/ui')); // support static path
+  gearApp.use('/restgear-ui', express.static(__dirname + '/restgear-ui')); // support static path
 
   for (var i = 0, len = apps.length; i < len; i++) {
     appSpec = apps[i];
@@ -101,7 +102,7 @@ init = function (conf) {
   });
 
   gearApp.get('/restGear/management', function(req,res){
-     fs.readFile( __dirname + "/ui/index.html", 'utf8', function (err, data) {         
+     fs.readFile( __dirname + "/restgear-ui/index.html", 'utf8', function (err, data) {         
          res.end( data );
      });    
   });
@@ -132,8 +133,8 @@ init = function (conf) {
 
   });
 
-  gearApp.get('/getConf', function(req, res) {
-    res.end(JSON.stringify(config));
+  gearApp.get('/getAppConf', function(req, res) {
+    res.end(JSON.stringify(config.apps));
   });
 
   // Start services
