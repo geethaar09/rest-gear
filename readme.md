@@ -3,6 +3,10 @@
 
 ##DESCRIPTION:
 
+
+## PLEASE DO NOT DOWNLOAD YET. FIXING IMPORTANT ISSUES.
+
+
 A simple rest server utility with UI based management that serves resources that are provided in the config. Allows adding multiple URIs to make rest calls to.
 
 Current version supports only GET requests. Future release may include PUT, POST and DELETE.

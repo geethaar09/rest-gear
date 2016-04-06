@@ -1,6 +1,6 @@
 {
   "name": "rest-gear",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A rest server utility to aid app development",
   "main": "gear_provider/gear.js",
   "dependencies": {
@@ -16,11 +16,6 @@
     "url": "git+https://github.com/geethaar09/rest-gear.git"
   },
   "keywords": [
-    "rest",
-    "ajax",
-    "mockjax",
-    "express",
-    "node"
   ],
   "author": "Geetha-Arvind",
   "license": "MIT",
