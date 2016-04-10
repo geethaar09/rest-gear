@@ -1,0 +1,4 @@
+@media (min-width: 840px)
+.mdl-cell--4-col, .mdl-cell--4-col-desktop.mdl-cell--4-col-desktop {
+    width: calc(100% - 16px) !important;
+}

@@ -1,5 +1,0 @@
-var restGearApp = restGearApp || {};
-
-(function () {
-	
-})();

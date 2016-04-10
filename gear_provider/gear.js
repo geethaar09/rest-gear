@@ -59,6 +59,8 @@ init = function (conf) { // TODO: REPLACE THIS WITH exports.init
   var apps = config.apps,
       appSpec, appName, appRestConf, gearPort = conf && conf.port || config.port;
 
+      console.log(conf.port);
+
   gearApp.use(bodyParser.json()); // support json encoded bodies
   gearApp.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies 
   gearApp.use('/ui', express.static(__dirname + '/ui')); // support static path
