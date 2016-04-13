@@ -1,1 +1,25 @@
-{"port":8081,"apps":[{"appName":"sample","appConf":{"URI":"/test","type":"GET","response_json":"sample_data.json"}},{"appName":"users","appConf":{"URI":"/listAllUsers","type":"GET","response_json":"users.json"}},{"appName":"users","appConf":{"URI":"/addUser","type":"POST","response":"User Added"}},{"appConf":{}},{"appConf":{}},{"appName":"NEWAPP","appConf":{"URI":"/newapp","type":"GET","response_json":"someFile.json"}},{"appName":"NEWAPP2","appConf":{"URI":"/newapp3","type":"GET","response_json":"someFile2.json"}},{"appConf":{}}]}
+{
+	"port": 8081,
+	"apps": [{
+		"appName": "sample",
+		"appConf": {
+			"URI": "/test",
+			"type": "GET",
+			"response_json": "sample_data.json"
+		}
+	}, {
+		"appName": "users",
+		"appConf": {
+			"URI": "/listAllUsers",
+			"type": "GET",
+			"response_json": "users.json"
+		}
+	}, {
+		"appName": "users",
+		"appConf": {
+			"URI": "/addUser",
+			"type": "POST",
+			"response": "User Added"
+		}
+	}]
+}
