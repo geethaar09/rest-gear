@@ -38,9 +38,11 @@ var restGearMgmt = restGearMgmt || {};
 		},
 
 		confSelected: function () {
-			var currentMode = restGearMgmt.confInfoCollection.first().get('mode');
-			var confModelData = _.extend({mode: currentMode}, this.model.toJSON());
-			restGearMgmt.confInfoCollection.reset(confModelData);
+
+			this.$el.trigger('restgear.refreshConfigInf', this);
+			// var currentMode = restGearMgmt.confInfoCollection.first().get('mode');
+			// var confModelData = _.extend({mode: currentMode}, this.model.toJSON());
+			// restGearMgmt.confInfoCollection.reset(confModelData);
 
 			// var confInfoPanel = new restGearMgmt.ShowConfig({ model: new ConfInfoModel(confModelData)});
 			// $('.gear-conf-info').html(confInfoPanel.render().el);

@@ -1,12 +1,12 @@
 var restGearMgmt = restGearMgmt || {};
 
 (function() {
-	'use sctrict';
+	// 'use sctrict';
 
-	var ConfInfoCollection = Backbone.Collection.extend({
-		model: restGearMgmt.ConfInfoModel
-	});
+	// var ConfInfoCollection = Backbone.Collection.extend({
+	// 	model: restGearMgmt.ConfInfoModel
+	// });
 
-	restGearMgmt.confInfoCollection = new ConfInfoCollection();
+	// restGearMgmt.confInfoCollection = new ConfInfoCollection();
 
 })();

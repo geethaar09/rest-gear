@@ -1,7 +1,7 @@
 var restGearMgmt = restGearMgmt || {};
 
 ( function () {
-	restGearMgmt.ConfInfoModel = Backbone.Model;
+	var ConfInfoModel = Backbone.Model;
 
-	// restGearMgmt.confInfoModel = new ConfInfoModel();
+	restGearMgmt.confInfoModel = new ConfInfoModel();
 })();

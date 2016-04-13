@@ -7,27 +7,36 @@ var restGearMgmt = restGearMgmt || {};
 	restGearMgmt.ShowConfig = Backbone.View.extend({
 		tagName: 'div',
 		events: {
-			'click .btn-edit-conf': 'editConfiguration'
+			'click .btn-edit-conf': 'editConfiguration',
+			'click .btn-save-conf': 'saveConfiguration',
+			'click .btn-cancel-conf': 'cancelConfiguration',
 		},
 		initialize: function () {
-			this.listenTo(restGearMgmt.confInfoCollection, 'reset', this.render);
+			// this.listenTo(restGearMgmt.confInfoCollection, 'reset', this.render);
 			this.listenTo(this.model, 'change', this.render);
 
 		},
 		template: _.template($('#config-info-right').html()),
 		render: function () {
+			var $cont = $('.gear-conf-info'),
+				$pa = $cont.parent();
 			this.$el.detach();
-			this.$el.html(this.template(restGearMgmt.confInfoCollection.first().toJSON()));
-			$('.gear-conf-info').html(this.$el);
+			$cont.detach();
+			this.$el.html(this.template(this.model.toJSON()));			
+			$cont.html(this.$el);
+			$pa.append($cont);
 			return this;
 		},
 
 		editConfiguration: function() {
-			console.log(this.model);
+			console.log(this.model.toJSON());
+			this.model.set({mode: 'edit'});
+		},
+		cancelConfiguration: function () {
+			this.model.set({mode: 'view'});
+			
 		}
 	});
 
 	// restGearMgmt.showConfig = new ShowConfig({ model: new restGearMgmt.ConfigInfoModel});
-	restGearMgmt.showConfig = new restGearMgmt.ShowConfig({model: restGearMgmt.confInfoModel});
-
 })();

@@ -3,8 +3,9 @@ var restGearMgmt = restGearMgmt || {};
 $(function(){
 
 	'use strict';
-	
-	new restGearMgmt.TileContainerView();
+
+	restGearMgmt.$appContainer = $('.rest-gear-app-cont');
+	restGearMgmt.bootstrapApp();
 
 	/*****
 		Temporary Experimental Code. To be deleted

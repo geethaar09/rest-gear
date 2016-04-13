@@ -234,12 +234,69 @@ _:-ms-input-placeholder, :root .demo-graph {
   color: #07EF1B;
 }
 
+
+
 .config-name-edit{
   /*width: 50% !important;*/
 }
 
 .config-mode-view{
-  background-color: rgb(183, 9, 121) !important;
-  color: #ffffff !important;
+  /*background-color: rgb(0, 128, 128) !important;*/
+  color: #565656 !important;
   font-size: 1.2rem;
+  padding: 5px 0px;
+}
+.btn-edit-conf{
+/*  line-height: 36px;
+  background-color: rgba(0, 128, 128, 0.45);*/
+}
+.btn-edit-conf:hover, .btn-edit-conf:focus, .btn-edit-conf:active{
+/*  background-color: rgb(2, 80, 80);
+  color: #fff;
+  border-color: #fff;*/
+  outline-color: teal !important;
+}
+.btn-save-conf:hover, .btn-save-conf:focus, .btn-save-conf:active{
+  background-color: teal;
+  color: #fff;
+  border-color: #fff;
+  outline-color: #fff !important;
+}
+.btn-link:focus, .btn-link:active, .btn-link:hover {
+  outline-color: #fff !important;
+}
+.content-fill-parent{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.content-footer {
+  position: absolute;
+  bottom: 0px;
+}
+.content-row {
+  padding: 16px 40px;
+}
+
+.gear-left{
+    background-color: #ebebeb !important;
+
+}
+.demo-layout .demo-navigation .mdl-navigation__link{
+    background-color: #ffffff !important;
+    color: #565656;
+    margin-bottom: 1px;
+
+}
+
+.demo-header, .demo-layout .demo-navigation .mdl-navigation__link:hover, .demo-layout .demo-navigation .mdl-navigation__link:active, .demo-layout .demo-navigation .mdl-navigation__link:focus  {
+    background-color: rgb(243, 184, 9) !important;
+    color: #fff !important;
+}
+
+.demo-layout .demo-navigation .mdl-navigation__link:hover .tile-info {
+  color: #C824E2;
 }

@@ -52,8 +52,9 @@
     <link rel="stylesheet" href="/restgear-ui/css/styles.css">
   </head>
   <body>
+  <div class="rest-gear-app-cont">
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+      <header class="demo-header mdl-layout__header mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout-title">Home</span>
           <div class="mdl-layout-spacer"></div>
@@ -76,66 +77,69 @@
           </ul>
         </div>
       </header>
-      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+      <div class="demo-drawer mdl-layout__drawer mdl-color-text--blue-grey-50 gear-left">
         <header class="demo-drawer-header">
           <img src="/restgear-ui/images/user.jpg" class="demo-avatar">
           <div class="demo-avatar-dropdown">
             <div><h4>Rest-GEAR</h4></div>
           </div>
         </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+        <nav class="demo-navigation mdl-navigation">
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content">
+        <div class="mdl-grid demo-content content-fill-parent">
           <div class="demo-separator mdl-cell--1-col"></div>
           <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop  gear-conf-info"></div>
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop  gear-conf-info content-fill-parent"></div>
           </div>
         </div>
       </main>
     </div>
 
+  </div>
+
+
 
 <script type="text/template" id="config-info-right">
 
 
-<div class = <%= (mode=== 'view') ? "config-mode-view" : "" %> >
-  <div class="mdl-card__title mdl-card--expand <%= (mode=== 'edit') ? "mdl-color--teal-300" : "" %>">
-    <h2 class="mdl-card__title-text"><%= appName %></h2>
+<div class = "content-fill-parent <%= (mode=== 'view') ? "config-mode-view" : "" %> " >
+  <div class="mdl-card__title mdl-card--expand <%= (mode=== 'edit') ? "mdl-color--teal-300" : "" %> content-row">
+    <h2 class="mdl-card__title-text"><%= data.appName %></h2>
   </div>
-  <div class=" <%= (mode=== 'edit') ? "mdl-color-text--grey-600 mdl-card__supporting-text" : "" %>">    
+  <div class="content-row <%= (mode=== 'edit') ? "mdl-color-text--grey-600 mdl-card__supporting-text" : "" %>">    
     <form class="container-fluid">
       <div class="form-group row">
-        <label for="config-name" class="col-md-12">Config Name</label>
-        <div id="config-name">
+        <label for="config-name" class="<%= (mode === 'view') ? "col-md-3" : "col-md-12" %>">Config Name</label>
+        <div id="config-name" class="col-md-6">
           <% if (mode === 'edit') { %>
-            <input type="text" class="form-control col-md-6 config-name-edit" placeholder="Ex: My Orders" value="<%= appConf.URI %>">
+            <input type="text" class="form-control col-md-6 config-name-edit" placeholder="Ex: My Orders" value="<%= data.appConf.URI %>">
           <% } %>
           <% if (mode === 'view') { %>
-            <div class="col-md-6 config-name-edit"><%= appConf.URI %></div>
+            <div class="col-md-6 config-name-edit"><%= data.appConf.URI %></div>
           <% } %>
         </div>
       </div>
       <div class="form-group row">
-        <label for="config-method" class="col-md-2">Method</label>
+        <label for="config-method" class="col-md-3">Method</label>
         <div id="config-method" class="col-md-6">
           <% if (mode === 'view') { %>
-            <div class="col-md-6 config-name-edit"><%= appConf.type %></div>
+            <div class="col-md-6 config-name-edit"><%= data.appConf.type %></div>
           <% } %>
         <% if (mode === 'edit') { %>
           <div class="config-method-edit">      
             <div class="radio">
-              <label><input type="radio" name="optradio" <%= (appConf.type==='GET') ? 'checked' : '' %>>GET</label>
+              <label><input type="radio" name="optradio" <%= (data.appConf.type==='GET') ? 'checked' : '' %>>GET</label>
             </div>
             <div class="radio disabled">
-              <label><input type="radio" name="optradio" disabled  <%= (appConf.type==='POST') ? 'checked' : '' %>>POST</label>
+              <label><input type="radio" name="optradio" disabled  <%= (data.appConf.type==='POST') ? 'checked' : '' %>>POST</label>
             </div>
             <div class="radio disabled">
-              <label><input type="radio" name="optradio" disabled  <%= (appConf.type==='PUT') ? 'checked' : '' %>>PUT</label>
+              <label><input type="radio" name="optradio" disabled  <%= (data.appConf.type==='PUT') ? 'checked' : '' %>>PUT</label>
             </div>
             <div class="radio disabled">
-              <label><input type="radio" name="optradio" disabled  <%= (appConf.type==='DELETE') ? 'checked' : '' %>>DELETE</label>
+              <label><input type="radio" name="optradio" disabled  <%= (data.appConf.type==='DELETE') ? 'checked' : '' %>>DELETE</label>
             </div>  
           </div>
         <% } %> 
@@ -143,7 +147,6 @@
         </div>
       </div>
    <% if (mode === 'edit') { %>
-
       <div class="form-group row">
         <label for="exampleInputFile" class="col-md-2">File input</label>
         <input type="file" id="exampleInputFile col-md-6">
@@ -152,10 +155,13 @@
 
     </form>
   </div>
-  <div class="mdl-card__actions mdl-card--border">
+  <div class="content-row mdl-card__actions mdl-card--border content-footer">
    <% if (mode === 'view') { %>
-    <button class="mdl-button mdl-js-button mdl-js-ripple-effect btn-edit-conf">Edit</button>
-
+    <button class="btn btn-default btn-edit-conf pull-right">Edit</button>
+   <% } %>
+    <% if (mode === 'edit') { %>
+    <button class="btn btn-default btn-save-conf pull-right">Save</button>
+    <button class="btn btn-link btn-cancel-conf pull-right">Cancel</button>
 
    <% } %> 
   </div>
@@ -175,6 +181,7 @@
 <script type="text/javascript" src="/restgear-ui/js/views/show-config.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/views/conf-tile-view.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/views/tile-container-view.js"></script>
+<script type="text/javascript" src="/restgear-ui/js/appController.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/app.js"></script>
 
 

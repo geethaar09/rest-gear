@@ -14,7 +14,8 @@ var restGearMgmt = restGearMgmt || {};
 
 			this.$configsElem = $('.config-parent');
 
-			restGearMgmt.tileConfCollection.fetch({reset: true});
+			// this.$el.trigger('')
+			// restGearMgmt.tileConfCollection.fetch({reset: true});
 
 		},
 		appendConf: function (conf) {
@@ -25,9 +26,10 @@ var restGearMgmt = restGearMgmt || {};
 
 		appendAllConf: function () {			
 			restGearMgmt.tileConfCollection.each(this.appendConf, this);
+			this.$el.trigger('restgear.configReloaded');
 			// var ConfInfoModel = Backbone.Model;
-			var confModelData = _.extend({mode: 'view'}, restGearMgmt.tileConfCollection.first().toJSON());
-			restGearMgmt.confInfoCollection.reset(confModelData);
+			// var confModelData = _.extend({mode: 'view'}, restGearMgmt.tileConfCollection.first().toJSON());
+			// restGearMgmt.confInfoCollection.reset(confModelData);
 			// restGearMgmt.confInfoModel = new  Backbone.Model(confModelData);
 			// var confInfoPanel = new restGearMgmt.ShowConfig({ model: new ConfInfoModel(confModelData) });
 			// $('.gear-conf-info').html(confInfoPanel.render().el);
