@@ -3,21 +3,21 @@
 	"apps": [{
 		"appName": "sample",
 		"appConf": {
-			"URI": "/test",
+			"URI": "test",
 			"type": "GET",
 			"response_json": "sample_data.json"
 		}
 	}, {
 		"appName": "users",
 		"appConf": {
-			"URI": "/listAllUsers",
+			"URI": "listAllUsers",
 			"type": "GET",
 			"response_json": "users.json"
 		}
 	}, {
 		"appName": "users",
 		"appConf": {
-			"URI": "/addUser",
+			"URI": "addUser",
 			"type": "POST",
 			"response": "User Added"
 		}

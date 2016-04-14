@@ -31,7 +31,7 @@ var restGearMgmt = restGearMgmt || {};
 					methodIcon = 'glyphicon-floppy-remove';
 					break;															
 			 };
-			 var tileTemplate = '<div class="mdl-navigation__link conf-card"><div class="tile-title">{{app-name}}</div><div class="tile-info"><span class="glyphicon '+ methodIcon + '" aria-hidden="true"></span> {{method}}</div></div>';
+			 var tileTemplate = '<div class="mdl-navigation__link gear-conf-card"><div class="gear-tile-title">{{app-name}}</div><div class="gear-tile-info"><span class="glyphicon '+ methodIcon + '" aria-hidden="true"></span> {{method}}</div></div>';
 			 var tile = tileTemplate.replace('{{app-name}}', confName).replace('{{method}}',  confMethod);
 			this.$el.html(tile);
 			return this;
