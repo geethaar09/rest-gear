@@ -20,6 +20,7 @@ var restGearMgmt = restGearMgmt || {};
 	}
 
 	function refreshConfigInf(evt, view) {
+		restGearMgmt.currentConfView = view;
 		if (evt.namespace === "configReloaded") {
 			var confModelData = _.extend({mode: 'view'}, {data:restGearMgmt.tileConfCollection.first().toJSON()});
 			restGearMgmt.confInfoModel.set(confModelData);
@@ -30,9 +31,15 @@ var restGearMgmt = restGearMgmt || {};
 		}
 	}
 
+	function editAppConf(evt, view){
+		view.model.set({mode: 'edit'});
+	}
+
 	function bindAppEvents(){
 		restGearMgmt.$appContainer.on('restgear.refreshConfigInf', refreshConfigInf);
 		restGearMgmt.$appContainer.on('restgear.configReloaded', refreshConfigInf);
+		restGearMgmt.$appContainer.on('restgear.editConfiguration', editAppConf);
+
 
 	}
 

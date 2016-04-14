@@ -318,6 +318,23 @@ _:-ms-input-placeholder, :root .demo-graph {
 
 }
 
+.gear-action-bar{
+  display: block;
+  height: 40px;
+  background-color: #565656;
+}
+
+.gear-action-conf{
+  margin: 10px;
+  cursor: pointer;
+}
+
+.gear-action-conf:hover, .gear-action-conf:focus, .gear-action-conf:active{
+  color: rgb(243, 184, 9);
+
+}
+
+
 .gear-conf-form{
   font-size: 18px;
   font-weight: 100;

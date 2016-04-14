@@ -28,9 +28,8 @@ var restGearMgmt = restGearMgmt || {};
 			return this;
 		},
 
-		editConfiguration: function() {
-			console.log(this.model.toJSON());
-			this.model.set({mode: 'edit'});
+		editConfiguration: function() {			
+			this.$el.trigger('restgear.editConfiguration', this);			
 		},
 		cancelConfiguration: function () {
 			this.model.set({mode: 'view'});
