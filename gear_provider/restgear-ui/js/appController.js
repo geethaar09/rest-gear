@@ -3,8 +3,17 @@ var restGearMgmt = restGearMgmt || {};
 (function() {
 	
 	restGearMgmt.bootstrapApp = function () {
+		restGearMgmt.elements = {
+			$appContainer: $('.rest-gear-app-cont'),
+			$btnAddConf: $('.gear-conf-add'),
+			$btnEditConf: $('.gear-conf-edit'),
+			$btnDeleteConf: $('.gear-conf-delete')
+		}
+
 		bindAppEvents();
 		new restGearMgmt.TileContainerView();
+		
+		restGearMgmt.confActionBar.render();
 
 		restGearMgmt.showConfig = new restGearMgmt.ShowConfig({model: restGearMgmt.confInfoModel});
 
@@ -36,11 +45,10 @@ var restGearMgmt = restGearMgmt || {};
 	}
 
 	function bindAppEvents(){
-		restGearMgmt.$appContainer.on('restgear.refreshConfigInf', refreshConfigInf);
-		restGearMgmt.$appContainer.on('restgear.configReloaded', refreshConfigInf);
-		restGearMgmt.$appContainer.on('restgear.editConfiguration', editAppConf);
-
-
+		restGearMgmt.elements.$appContainer.on('restgear.refreshConfigInf', refreshConfigInf);
+		restGearMgmt.elements.$appContainer.on('restgear.configReloaded', refreshConfigInf);
+		restGearMgmt.elements.$appContainer.on('restgear.addConfiguration', editAppConf);
+		restGearMgmt.elements.$appContainer.on('restgear.editConfiguration', editAppConf);
 	}
 
 })();

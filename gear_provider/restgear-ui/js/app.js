@@ -4,7 +4,6 @@ $(function(){
 
 	'use strict';
 
-	restGearMgmt.$appContainer = $('.rest-gear-app-cont');
 	restGearMgmt.bootstrapApp();
 
 	/*****

@@ -86,11 +86,11 @@
           </div>
         </header>
         <section class="gear-action-bar">
-          <div class="gear-action-bar-inner pull-right">
+<!--           <div class="gear-action-bar-inner pull-right">
             <span class="glyphicon glyphicon-plus gear-action-conf gear-conf-add"></span>
             <span class="glyphicon glyphicon-edit gear-action-conf gear-conf-edit"></span>
-            <span class="glyphicon glyphicon-minus gear-action-conf gear-conf-delete"></span>            
-          </div>
+            <span class="glyphicon glyphicon-minus gear-action-conf gear-conf-delete"></span>
+          </div> -->
         </section>
         <nav class="demo-navigation mdl-navigation">
         </nav>
@@ -122,10 +122,10 @@
         <label for="config-name" class="gear-config-label <%= (mode === 'view') ? "col-md-3" : "col-md-12" %>">Config Name</label>
         <div id="config-name" class="col-md-6">
           <% if (mode === 'edit') { %>
-            <input type="text" class="form-control col-md-6 config-name-edit" placeholder="Ex: My Orders" value="<%= data.appConf.URI %>">
+            <input type="text" class="form-control col-md-6 config-name-edit" placeholder="Ex: My Orders" value="<%= data.appConf.confName %>">
           <% } %>
           <% if (mode === 'view') { %>
-            <div class="col-md-6 config-name-edit"><%= data.appConf.URI %></div>
+            <div class="col-md-6 config-name-edit"><%= data.appConf.confName %></div>
           <% } %>
         </div>
       </div>
@@ -187,6 +187,7 @@
 <script type="text/javascript" src="/restgear-ui/js/collections/conf-tile-collection.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/collections/conf-info-collection.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/views/show-config.js"></script>
+<script type="text/javascript" src="/restgear-ui/js/views/conf-action-view.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/views/conf-tile-view.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/views/tile-container-view.js"></script>
 <script type="text/javascript" src="/restgear-ui/js/appController.js"></script>
