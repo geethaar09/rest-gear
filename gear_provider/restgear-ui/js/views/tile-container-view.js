@@ -7,6 +7,11 @@ var restGearMgmt = restGearMgmt || {};
 	restGearMgmt.TileContainerView = Backbone.View.extend({
 
 		el: '.demo-navigation',
+		events: {
+			'click .gear-conf-add': 'addConf',
+			// 'click .gear-conf-edit': 'editConf',
+			'click .gear-conf-delete': 'delConf'
+		},
 
 		initialize: function () {
 			this.listenTo(restGearMgmt.tileConfCollection,'add', this.appendConf);		
@@ -20,22 +25,41 @@ var restGearMgmt = restGearMgmt || {};
 		},
 		appendConf: function (conf) {
 			var tile = new restGearMgmt.ConfTileView({ model: conf});
-			// this.$configsElem.append(tile.render().el);
 			this.$el.append(tile.render().el);
 		},
 
-		appendAllConf: function () {			
+		appendAllConf: function () {
+			this.$el.empty();
+			prepareContainer(this.$el);
 			restGearMgmt.tileConfCollection.each(this.appendConf, this);
 			this.$el.trigger('restgear.configReloaded');
-			// var ConfInfoModel = Backbone.Model;
-			// var confModelData = _.extend({mode: 'view'}, restGearMgmt.tileConfCollection.first().toJSON());
-			// restGearMgmt.confInfoCollection.reset(confModelData);
-			// restGearMgmt.confInfoModel = new  Backbone.Model(confModelData);
-			// var confInfoPanel = new restGearMgmt.ShowConfig({ model: new ConfInfoModel(confModelData) });
-			// $('.gear-conf-info').html(confInfoPanel.render().el);
+		},
+		addConf: function() {
+			console.log("Add Config");
+			this.$el.trigger('restgear.changeModeAdd');
 
-		}
+		},
+		editConf: function() {
+			console.log("Edit Config");
+
+		},
+		delConf: function() {
+			console.log("Del Config");			
+		}			
 
 	});
+
+	function prepareContainer($container) {
+
+		var actionContainerTemplate = '<section class="gear-action-bar">' +
+            '<div class="gear-action-bar-inner pull-right">' +
+            '<span class="glyphicon glyphicon-plus gear-action-conf gear-conf-add"></span>' +
+            '<!-- <span class="glyphicon glyphicon-edit gear-action-conf gear-conf-edit"></span> -->' +
+            '<span class="glyphicon glyphicon-minus gear-action-conf gear-conf-delete"></span>' +
+            '</div></section>';
+
+        $container.empty();
+        $container.append(actionContainerTemplate);
+	}
 
 })();

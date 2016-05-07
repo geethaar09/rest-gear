@@ -301,6 +301,16 @@ _:-ms-input-placeholder, :root .demo-graph {
 
 /* GEAR Custom Styles*/
 
+.gear-icon {
+  font-size: xx-large;
+  font-weight: 500;
+}
+
+.gear-action-icon {
+  font-size: large;
+  font-weight: 300;
+}
+
 .gear-app-header{
   min-height:75px;
 }
@@ -320,6 +330,10 @@ _:-ms-input-placeholder, :root .demo-graph {
     letter-spacing: .02em;
     box-sizing: border-box;
 
+}
+
+.gear-left-nav {
+  padding: 0px !important;
 }
 
 .gear-conf-card{

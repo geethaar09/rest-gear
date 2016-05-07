@@ -14,8 +14,9 @@ var restGearMgmt = restGearMgmt || {};
 		},
 		render: function() {
 			 // var tileTemplate = '<div class="row conf-tile"><div class="col-md-12"><span class="config-app-name">{{app-name}}</span></div></div>';
-			var confMethod = this.model.toJSON().appConf.type,
-				confName = this.model.toJSON().appName,
+			var confMethod = this.model.toJSON().appConf.method,
+				appName = this.model.toJSON().appName,
+				confName = this.model.toJSON().appConf.confName,
 				methodIcon;
 			switch(confMethod) {
 				case 'GET':
@@ -31,8 +32,8 @@ var restGearMgmt = restGearMgmt || {};
 					methodIcon = 'glyphicon-floppy-remove';
 					break;															
 			 };
-			 var tileTemplate = '<div class="mdl-navigation__link gear-conf-card"><div class="gear-tile-title">{{app-name}}</div><div class="gear-tile-info"><span class="glyphicon '+ methodIcon + '" aria-hidden="true"></span> {{method}}</div></div>';
-			 var tile = tileTemplate.replace('{{app-name}}', confName).replace('{{method}}',  confMethod);
+			 var tileTemplate = '<div class="mdl-navigation__link gear-conf-card"><div class="gear-tile-title">{{app-name}}</div><small>{{confName}}</small><div class="gear-tile-info"><span class="glyphicon '+ methodIcon + '" aria-hidden="true"></span> {{method}}</div></div>';
+			 var tile = tileTemplate.replace('{{app-name}}', appName).replace('{{method}}',  confMethod).replace('{{confName}}',  confName);
 			this.$el.html(tile);
 			return this;
 		},

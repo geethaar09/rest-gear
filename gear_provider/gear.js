@@ -6,6 +6,7 @@ var fs = require('fs');
 var restGear;
 var config = require('./conf/config');
 var bodyParser = require('body-parser');
+var appPort;
 
 function restGearRestart(){
   restGearStop();
@@ -15,10 +16,12 @@ function restGearRestart(){
 
 function restGearStart(gearPort) {
   console.log("Starting restGear...");
-
+    appPort = gearPort;
     restGear = gearApp.listen(gearPort, function () {
       var port = restGear.address().port;
+      console.log("Management URL: http://localhost:" + port + "/restGear/management");
       console.log("Rest Gear Service Listening on port: " + port);
+
   });
 }
 
@@ -28,8 +31,8 @@ function restGearStop() {
 }
 
 function restGearAddGet(app, restConf) {
-  var URI = '/' + app + restConf.URI;
-  console.log(URI);  
+  var URI = '/' + app + '/' + restConf.confName;  
+  // console.log(URI);  
   gearApp.get(URI, function (req, res) {
      fs.readFile( __dirname + "/apps/" + app + "/" + restConf.response_json, 'utf8', function (err, data) {         
          res.send( data );
@@ -38,8 +41,8 @@ function restGearAddGet(app, restConf) {
 }
 
 function restGearAddPost(app, restConf) {
-  var URI = '/' + app + restConf.URI;
-  console.log(URI);
+  var URI = '/' + app + '/' + restConf.confName;
+  // console.log(">" + URI);
   gearApp.post(URI, function (req, res) {
     // console.log(req);
     res.send(req.body.Age);
@@ -54,13 +57,20 @@ function createUISymLink() {
   fs.linkSync(dstpath, srcpath);
 }
 
+function generateUUID() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+};
+
 init = function (conf) { // TODO: REPLACE THIS WITH exports.init
 // exports.init = function (conf) {
   var apps = config.apps,
       appSpec, appName, appRestConf, gearPort = conf && conf.port || config.port;
-
-      console.log(conf.port);
-
   gearApp.use(bodyParser.json()); // support json encoded bodies
   gearApp.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies 
   gearApp.use('/ui', express.static(__dirname + '/ui')); // support static path
@@ -72,7 +82,7 @@ init = function (conf) { // TODO: REPLACE THIS WITH exports.init
     appRestConf = appSpec.appConf;
     // for (var j = 0, confLen = appSpec.appConf.length; j < confLen; j++) {
       
-      console.log(appRestConf.type);
+      // console.log(appRestConf.type);
       switch(appRestConf.type) { //TODO: Convert to functional programming
         case "GET":
           restGearAddGet(appName, appRestConf);
@@ -93,27 +103,6 @@ init = function (conf) { // TODO: REPLACE THIS WITH exports.init
     // }
   }
 
-  // for ( var app in apps) {
-  //   appConf = apps[app];
-  //   for(var i = 0, len = appConf.length; i < len; i++) {
-  //     appRestConf = appConf[i];      
-  //     switch(appRestConf.type) { //TODO: Convert to functional programming
-  //       case "GET":
-  //         restGearAddGet(app, appRestConf);
-  //         break;
-
-  //       case "POST":
-  //         // restGearAddPost(app, appRestConf);
-  //         break;
-
-  //       case "DELETE":
-  //         // restGearAddDelete(app, appRestConf);
-  //         break;  
-  //     }
-
-  //   }
-  // }
-
   gearApp.get('/restGear-restart', function (req, res) {
     restGearRestart();
   });
@@ -131,38 +120,48 @@ init = function (conf) { // TODO: REPLACE THIS WITH exports.init
     });   
   });
 
-  gearApp.post('/config/addAppConf', function(req, res) {
+  gearApp.post('/config/addChangeAppConf', function(req, res) {
     var body = req.body;
+    var mode = (req.body.GUID) ? "edit" : "add";
+    var confGUID = (mode === "add") ? generateUUID() : req.body.GUID;
     console.log(JSON.stringify(req.body));
     var newConf = {
-      "appName": req.body.app,
+      "appName": req.body.appName,
       "appConf": {
-        "URI": req.body.URI,
-        "type": req.body.type,
-        "response_json": req.body.response_json
-      }
+        "confName": req.body.confName,
+        "method": req.body.method,
+        "response_json": req.body.response_json || "sample.json",
+        "URI": "http://localhost:" + appPort + "/" + req.body.appName + "/" + req.body.confName
+      },
+      "GUID": confGUID
     };
-    // var app = req.body.app;
-    // var appExists =  (config.apps[app]) ? true : false;
-    // var appConfig = {
-    //   "URI": req.body.URI,
-    //   "type": req.body.type,
-    //   "response_json": req.body.response_json
-    // };
 
-    config.apps.push(newConf);
-    // (appExists) && (config.apps[app].push(appConfig));
-    // !(appExists) && (config.apps[app] = [appConfig]);
+    if (mode === "edit") {
+      for (var i in config.apps) {
+        if ( config.apps[i].GUID == confGUID ) {
+          config.apps[i] = newConf;
+          break;
+        }
+      }
+    }
+    else if (mode === "add") {
+      config.apps.push(newConf);
+    }
 
     fs.writeFile('./conf/config.json', JSON.stringify(config), function(err) {
       if (err) {
         res.end("ERROR");
+        console.log("Error occured");
         return;
       }
-      res.send("Config Saved");
+      res.send({
+        message: "Configuration Created / Edited",
+        confGUID: confGUID,
+        newConf: newConf
+      });
       
 
-      // res.send();
+      // res.send(confGUID);
     });
   });
 

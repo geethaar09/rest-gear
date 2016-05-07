@@ -12,9 +12,9 @@ var restGearMgmt = restGearMgmt || {};
 		},
 		render: function() {
 			var actionBarContent = '<div class="gear-action-bar-inner pull-right">' +
-            '<span class="glyphicon glyphicon-plus-sign gear-action-conf gear-conf-add"></span>' +
-            '<span class="glyphicon glyphicon-edit gear-action-conf gear-conf-edit"></span>' +
-            '<span class="glyphicon glyphicon-minus-sign gear-action-conf gear-conf-delete"></span></div>';
+            '<span class="glyphicon glyphicon-plus-sign gear-action-conf gear-conf-add gear-action-icon"></span>' +
+            '<span class="glyphicon glyphicon-edit gear-action-conf gear-conf-edit gear-action-icon"></span>' +
+            '<span class="glyphicon glyphicon-minus-sign gear-action-conf gear-conf-delete gear-action-icon"></span></div>';
           
 			$('.gear-action-bar').append(actionBarContent);
 		},
